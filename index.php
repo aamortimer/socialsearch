@@ -113,133 +113,13 @@
   <head>
     <title>Social Search</title>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-    <!--<link rel="stylesheet" type="text/css" href="css/master.css" />-->
+    <link rel="stylesheet" type="text/css" href="css/master.css" />
+    <?php if ($search_term) : ?>
+    <link rel="alternate" type="application/rss+xml" title="Travel News" href="http://procodeable.co.uk/socialsearch/feed.php?q=<?php echo urlencode(stripslashes($search_term)); ?>" />
+    <?php endif; ?>
   </head>
   <body id="page">
-    <style type="text/css" media="screen">
-      body{
-        font:normal 18px/22px HelveticaNeue-Light, 'Helvetica Neue Light', sans-serif;
-        background:#efefef url('imgs/bkg.gif');
-        color:#444;
-      }
-      #wrap{
-        margin:10px auto;
-        width:960px;
-        padding:10px;
-        background:#fff;
-        border-radius:10px;
-        -moz-box-shadow: rgba(0,0,0, 0.2) 0px 0px 12px;  
-        -webkit-box-shadow: rgba(0,0,0, 0.2) 0px 0px 12px;
-      }
-      .entry{
-        margin-bottom:20px;
-        background-color:#fff;
-        padding:10px;
-        border-bottom:1px solid #efefef;
-        width:935px;
-        clear:both;
-      }
-      .entry .meta{
-        display:block;
-        clear:both;
-        font-size:14px;
-        float:right;
-      }
-      .entry .message{
-        float:left;
-        width:850px;
-      }
-      .entry .image{
-        float:left;
-        margin-right:5px;
-      }
-      .highlight{
-        background:#FFA;
-      }
-      #header{
-        width:980px;
-        margin:30px auto;         
-      }
-      h1.title a{
-        text-shadow: white 0 1px 0px;
-        font-weight: normal;
-        font-size: 40px;
-      }
-      h2.subtitle{
-        text-shadow: white 0 1px 0px;
-        font-weight: normal;
-        font-size: 14px;
-        margin: -19px 0 0 10px;
-        color: #666;
-      }
-      #footer, #footer a{
-        text-shadow: white 0 1px 0px;
-        font-weight: normal;
-        font-size: 14px;
-        color: #666;      
-        width:980px;
-        margin:10px auto;           
-      }
-      a:hover{
-        color:rgba(81, 203, 238, 1);
-      }
-      a{
-        -webkit-transition: color .4s ease;
-        color: #B8B8B8;
-        text-decoration:none;
-      }
-      .clearfix:before, .clearfix:after { content: "\0020"; display: block; height: 0; overflow: hidden; }
-      .clearfix:after { clear: both; }
-      .clearfix { zoom: 1; }
-      @-webkit-keyframes glow {
-        from {
-          border:1px solid rgba(184, 184, 184, 0.6);
-          box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;  
-          -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;  
-          -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
-        }
-        50% {
-          border:#35a5e5 1px solid;
-          box-shadow: 0 0 5px rgba(81, 203, 238, 1);
-          -webkit-box-shadow: 0 0 5px rgba(81, 203, 238, 1);
-          -moz-box-shadow: 0 0 5px rgba(81, 203, 238, 1);
-        }
-        to { 
-          border:1px solid rgba(184, 184, 184, 0.6);
-          box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;  
-          -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;  
-          -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
-        }
-      }
-      #q{
-        width:945px;
-        padding:10px 5px;
-        font-size: 18px;
-        color:#444;
-        border:1px solid rgba(184, 184, 184, 0.6);
-        box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;  
-        -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;  
-        -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
-        background: -webkit-gradient(linear, left top, left 25, from(#eeeeee), to(#FFFFFF));  
-        background: -moz-linear-gradient(top, #eeeeee, #FFFFFF 25px);
-        outline:none;
-        -webkit-animation-name: 'glow';
-        -webkit-animation-duration: 5s;
-        -webkit-animation-iteration-count: infinite;
-        -webkit-animation-direction: alternate;
-        -webkit-animation-timing-function: ease-in-out;
-      }
-      #q::-webkit-input-placeholder {
-         color: #9c9c9c;
-         font-style: italic;
-      }
-      #q:-moz-placeholder {
-         color: #9c9c9c;
-         font-style: italic;
-      }
-      .hide{display:none;}
-    </style>
-    
+        
     <div id="header">
       <h1 class="title"><a href="" title="Social Search">Social Search</a></h1>
       <h2 class="subtitle">Twitter and Facebook search</h2>
@@ -277,39 +157,12 @@
 
     <div id="footer" class="clearfix">
       Created by Andy Mortimer <a href="http://twitter.com/mortimer">@mortimer</a>
+      <?php if($search_term): ?>
+       | <a href="http://procodeable.co.uk/socialsearch/feed.php?q=<?php echo urlencode(stripslashes($search_term)); ?>" title="Search Feed">RSS Feed</a>
+      <?php endif; ?>
     </div>
     
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-    <script type="text/javascript" charset="utf-8">
-      function submitenter(form, e){
-        var keycode;
-        if (window.event) {
-          keycode = window.event.keyCode;
-        }else if (e){
-          keycode = e.which;
-        }else{
-          return true;
-        } 
-        if (keycode == 13){
-          form.form.submit();
-          return false;
-        }else{
-          return true;
-        }
-        
-        document.getElementById('q').onkeypress = function(e){
-          submitenter(this, e);
-        }
-      }
-      
-      var q = escape($('#q').val());
-      var twitter_since = $('#twitter_since').html();
-      var facebook_since = $('#facebook_since').html();
-      setInterval(function(){
-        $.get('index.php?ajax=true&q='+q+'&twitter_since='+twitter_since+'&facebook_since='+facebook_since, function(data) {
-          $('#results').html(data);
-        });
-      }, 40000);
-    </script>
+    <script src="js/scripts.js" type="text/javascript" charset="utf-8"></script>
   </body>
 </html>
