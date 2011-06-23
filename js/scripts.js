@@ -22,8 +22,10 @@ function submitenter(form, e){
 var q = escape($('#q').val());
 var twitter_since = $('#twitter_since').html();
 var facebook_since = $('#facebook_since').html();
-setInterval(function(){
-  $.get('index.php?ajax=true&q='+q+'&twitter_since='+twitter_since+'&facebook_since='+facebook_since, function(data) {
-    $('#results').html(data);
-  });
-}, 40000);
+if(q != ''){
+  setInterval(function(){
+    $.get('index.php?ajax=true&q='+q+'&twitter_since='+twitter_since+'&facebook_since='+facebook_since, function(data) {
+      $('#results').html(data);
+    });
+  }, 40000);
+}
