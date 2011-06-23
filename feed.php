@@ -1,8 +1,8 @@
 <?php
   error_reporting(0);
   ini_set('display_errors', 0);
-  date_default_timezone_set('GMT');
-	
+  date_default_timezone_set('Europe/London');
+  
   function highlight($text, $words){
     $words = stripslashes($words);
     if(preg_match('/^"(.*)"$/', $words, $matches)){
@@ -93,6 +93,7 @@
                   <title>'.htmlentities($d[0]['user'].' - '.stripslashes($search_term)).'</title>
                   <link>'.htmlentities($d[0]['link']).'</link>
                   <description><![CDATA['.xmlentities($d[0]['message']).']]></description>              
+                  <guid>'.htmlentities($d[0]['link']).'</guid>
                   <pubDate>'.strftime("%a, %d %b %Y %T %Z", $timestamp).'</pubDate>
                 </item>';
     }
@@ -108,14 +109,14 @@ header("Pragma: no-cache")
 
 ?>
 <?php echo '<?xml version="1.0" encoding="UTF-8"?>'; ?>
-<rss version="2.0">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel> 
   	<title><?php echo stripslashes($search_term); ?> | SocialSearch</title> 
   	<link>http://procodeable.co.uk/socialsearch/feed.php?q=<?php echo urlencode(stripslashes($search_term)); ?></link> 
   	<description>Social Search - Twitter and Facebook search</description> 
   	<lastBuildDate><?php echo strftime("%a, %d %b %Y %T %Z", strtotime('now')) ?></lastBuildDate> 
   	<language>en</language> 
-
+    
     <?php echo $items; ?>
 
   </channel>
