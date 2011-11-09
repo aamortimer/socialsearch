@@ -111,9 +111,10 @@
 <!DOCTYPE html >
 <html lang="en">
   <head>
+    <meta charset="utf-8">
     <title>Social Search</title>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-    <link rel="stylesheet" type="text/css" href="css/master.css" />
+    <meta name=viewport content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/master-min.css" />
     <?php if ($search_term) : ?>
     <link rel="alternate" type="application/rss+xml" title="Travel News" href="http://procodeable.co.uk/socialsearch/feed.php?q=<?php echo urlencode(stripslashes($search_term)); ?>" />
     <?php endif; ?>
@@ -121,7 +122,7 @@
   <body id="page">
         
     <div id="header">
-      <h1 class="title"><a href="" title="Social Search">Social Search</a></h1>
+      <h1 class="title"><a href="http://procodeable.co.uk/socialsearch/" title="Social Search">Social Search</a></h1>
       <h2 class="subtitle">Twitter and Facebook search</h2>
     </div>
     
@@ -163,7 +164,7 @@
     </div>
     
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="js/scripts.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/scripts-min.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript">
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-24143847-1']);

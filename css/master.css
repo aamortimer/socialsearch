@@ -1,6 +1,6 @@
 body{
   font:normal 18px/22px HelveticaNeue-Light, 'Helvetica Neue Light', sans-serif;
-  background:#efefef url('imgs/bkg.gif');
+  background:#efefef url('../imgs/bkg.gif');
   color:#444;
 }
 #wrap{
